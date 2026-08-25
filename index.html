@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>행정안전부 보도자료 검색</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 상단 해더 영역 -->
+    <header class="header">
+        <div class="header-container">
+            <div class="government-badge">
+                <span class="symbol">🏛️</span>
+                <span>행정안전부 보도자료 포털</span>
+            </div>
+            <h1 class="header-title">행정안전부 보도자료 검색</h1>
+            <p class="header-desc">행정안전부 주요 보도자료 16건을 키워드로 실시간 검색하고 내용을 확인하세요.</p>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="main-container">
+        <!-- 검색 및 결과 건수 컨트롤 바 -->
+        <section class="search-section">
+            <div class="search-box-wrapper">
+                <div class="search-input-group">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="검색어를 입력하세요 (제목 또는 본문 검색)..." 
+                        aria-label="보도자료 검색어 입력"
+                        autocomplete="off"
+                    >
+                    <button type="button" id="clearBtn" class="clear-btn" aria-label="검색어 지우기" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 결과 건수 표시 바 -->
+            <div class="result-bar">
+                <div class="result-info">
+                    <span class="info-icon">📋</span>
+                    <span id="resultCount" class="result-count">결과 16건</span>
+                </div>
+                <div class="search-tip">
+                    <span>💡 입력 시 실시간 필터링됩니다.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 보도자료 카드 그리드 영역 -->
+        <section class="grid-section">
+            <div id="cardGrid" class="card-grid">
+                <!-- JavaScript를 통해 16건의 카드가 동적으로 렌더링됩니다. -->
+            </div>
+
+            <!-- 검색 결과가 0건일 때 표시되는 안내 메세지 -->
+            <div id="noResults" class="no-results-container" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h2 class="no-results-title">검색 결과가 없습니다</h2>
+                <p class="no-results-desc">입력하신 검색어와 일치하는 보도자료를 찾을 수 없습니다.<br>다른 키워드로 다시 검색해 보세요.</p>
+                <button type="button" class="reset-search-btn" onclick="clearSearch()">전체 목록 보기</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 카드 클릭 시 본문 전문을 노출하는 모달 창 (가점 항목) -->
+    <div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-meta">
+                    <span id="modalCategory" class="category-badge">분야</span>
+                    <span id="modalDate" class="modal-date">2026. 05. 20.</span>
+                </div>
+                <button type="button" id="modalCloseBtn" class="modal-close-btn" aria-label="모달 닫기">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <h2 id="modalTitle" class="modal-title">보도자료 제목</h2>
+            <div class="modal-divider"></div>
+            <div id="modalBody" class="modal-body">
+                <!-- 본문 내용이 파싱되어 삽입됩니다 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-footer-close-btn" onclick="closeModal()">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 영역 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>대한민국 행정안전부 보도자료 포털 | 본 페이지는 정적 웹사이트로 동작합니다.</p>
+            <p class="copyright">© Ministry of the Interior and Safety. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 자바스크립트 내장 파일 -->
+    <script src="app.js"></script>
+</body>
+</html>
